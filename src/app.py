@@ -34,7 +34,12 @@ def get_member(member_id):
 def add_member():
     member_data = request.get_json()
     new_member = jackson_family.add_member(member_data)
-    return jsonify(new_member), 200
+    response = {
+        "message": "Miembro creado con éxito",
+        "member": new_member
+    }
+    return jsonify(response), 200
+
 
 @app.route('/members/<int:member_id>', methods=['DELETE'])
 def delete_member(member_id):
